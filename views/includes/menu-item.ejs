@@ -1,0 +1,30 @@
+<ul>
+  <li>
+    <a href="/portfolio">Portfolio</a>
+  </li>
+
+  <% if (locals.admin || locals.manager) { %>
+    <li>
+      <a href="/management">Management</a>
+    </li>
+  <% } %>
+
+  <% if (locals.admin) { %>
+    <li>
+      <a href="/writing/writing-list">글 쓰기</a>
+    </li>
+  <% } %>
+
+  <% if (locals.auth) { %>
+    <li>
+      <a href="/info">내 정보</a>
+    </li>
+    <li>
+      <a class="btn btn-light" href="/logout">Logout</a>
+    </li>
+  <% } else { %>
+    <li>
+      <a href="/login">Login</a>
+    </li>
+  <% } %>
+</ul>

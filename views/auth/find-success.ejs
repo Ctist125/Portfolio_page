@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <%- include("../includes/head", { pageTitle: "Success" }) %>
+
+  <body>
+    <%- include("../includes/header") %>
+
+    <main>
+        <section class="notice">
+          <ul>
+            <li>
+              <h1>임시 비밀번호가 이메일로 발급되었습니다.</h1>
+            </li>
+            <li>
+              <p>전송된 이메일: <%= email %></p>
+              <p>접속 후 빠른 시일 내에 비밀번호를 변경해 주십시오.</p>
+            </li>
+            <li>
+              <a class="btn btn-light" href="/">메인으로</a>
+            </li>
+          </ul>
+        </section>
+      </main>
+
+      <%- include("../includes/footer") %>
+  </body>
+</html>

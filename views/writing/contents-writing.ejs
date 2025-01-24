@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <%- include("../includes/head", { pageTitle: "글 쓰기" }) %>
+
+  <body>
+    <%- include("../includes/header") %>
+
+    <main>
+      <h1>글 쓰기</h1>
+
+      <section class="white-box" id="contents-input">
+        <form action="<%= url %>" method="POST" enctype="multipart/form-data">
+          <input type="hidden" name="_csrf" value="<%= locals.csrfToken %>">
+
+          <ul>
+            <li>
+              <label class="emphasis" for="title">제목</label>
+            </li>
+            <li>
+              <input
+                type="text"
+                class="emphasis"
+                id="title"
+                name="title"
+                placeholder="Title"
+                value="<%= flashData.title %>"
+                required
+              />
+            </li>
+            <li>
+              <% if (flashData.error.titleError) { %>
+                <p class="err"><%=  flashData.error.titleError %></p>
+              <% } else { %>
+                <br />
+              <% } %>
+            </li>
+            <li>
+              <label class="emphasis" for="image">사진</label>
+            </li>
+            <li id="image-list">
+              <div>
+                <label for="image" id="file-btn">
+                  <div class="btn btn-light">파일 선택</div>
+                </label>
+                <input
+                  type="file"
+                  id="image"
+                  name="image"
+                  accept="image/jpeg"
+                  required
+                />
+              </div>
+              <div>
+                <img src="" alt="선택한 이미지">
+              </div>
+            </li>
+            <li>
+              <br />
+            </li>
+            <li class="date-input">
+              <label class="emphasis" for="start-date">시작 날짜</label>
+              <p>~</p>
+              <label class="emphasis" for="end-date">종료 날짜</label>
+            </li>
+            <li class="date-input">
+              <input type="date" id="start-date" name="startDate" value="<%= flashData.startDate %>" required />
+              <p>~</p>
+              <input type="date" id="end-date" name="endDate" value="<%= flashData.endDate %>" required />
+            </li>
+            <li>
+              <br />
+            </li>
+            <li>
+              <label class="emphasis" for="language">사용 언어</label>
+            </li>
+            <li>
+              <input
+                type="text"
+                id="language"
+                name="language"
+                placeholder="쉼표(,)구분 ex) HTML,CSS,..."
+                value="<%= flashData.language %>"
+                required
+              />
+            </li>
+            <li>
+              <% if (flashData.error.languageError) { %>
+                <p class="err"><%= flashData.error.languageError %></p>
+              <% } else { %>
+                <br />
+              <% } %>
+            </li>
+            <li>
+              <label class="emphasis" for="reference">참고 링크</label>
+            </li>
+            <li>
+              <input type="url" id="reference" name="reference" placeholder="ex) http://www.example.com" value="<%= flashData.reference %>" required>
+            </li>
+            <li>
+              <br>
+            </li>
+            <li>
+              <label class="emphasis" for="description">설명</label>
+            </li>
+            <li>
+              <textarea
+                name="description"
+                id="description"
+                rows="20"
+                placeholder="설명"
+                required
+              ><%= flashData.description %></textarea>
+            </li>
+            <li>
+              <% if (flashData.error.descriptionError) { %>
+                <p class="err"><%= flashData.error.descriptionError %></p>
+              <% } else { %>
+                <br />
+              <% } %>
+            </li>
+            <li id="button-list">
+              <button type="submit" class="btn btn-light">등록</button>
+            </li>
+          </ul>
+        </form>
+      </section>
+    </main>
+
+    <%- include("../includes/footer") %>
+  </body>
+</html>

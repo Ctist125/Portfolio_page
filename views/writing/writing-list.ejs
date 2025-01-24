@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <%- include("../includes/head", { pageTitle: "Writing list" }) %>
+
+  <body>
+    <%- include("../includes/header") %>
+
+    <main>
+      <section class="card-menu" id="writing-list">
+        <div id="history">
+          <img src="/resource/system-image/logo_text.png" alt="logo image" />
+          <ul>
+            <li>
+              <h2>History writing</h2>
+            </li>
+            <li>
+              <p>
+                지금까지 살아온 환경과 있었던 일 등에 대해 기록하는 곳입니다.
+              </p>
+            </li>
+            <li class="btn-list">
+                <a class="btn btn-light wide-btn" href="/writing/history-writing">History 작성</a>
+            </li>
+          </ul>
+        </div>
+
+        <div id="contents">
+            <img src="/resource/system-image/bulb.jpg" alt="bulb image" />
+            <ul>
+              <li>
+                <h2>Contents writing</h2>
+              </li>
+              <li>
+                <p>
+                  지금까지 해온 작업물과 공부 등에 대해 기록하는 곳입니다.
+                </p>
+              </li>
+              <li class="btn-list">
+                  <a class="btn btn-light wide-btn" href="/writing/contents-writing">Contents 작성</a>
+              </li>
+            </ul>
+          </div>
+      </section>
+    </main>
+
+    <%- include("../includes/footer") %>
+  </body>
+</html>

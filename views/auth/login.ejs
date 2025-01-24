@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <%- include("../includes/head", { pageTitle: "Login" }) %>
+
+  <body>
+    <%- include("../includes/header") %>
+
+    <main>
+      <section class="auth">
+        <div class="auth-contents">
+          <h1>Login</h1>
+          <form action="/login" method="POST">
+            <input type="hidden" name="_csrf" value="<%= locals.csrfToken %>">
+            <ul>
+              <li>
+                <input
+                  type="text"
+                  id="user-email"
+                  name="userEmail"
+                  value="<%= login.email %>"
+                  placeholder="이메일"
+                  required
+                />
+              </li>
+              <li>
+                <input
+                  type="password"
+                  id="user-pw"
+                  name="userPw"
+                  placeholder="Password"
+                  required
+                />
+              </li>
+              <li>
+                <% if (login.error) { %>
+                  <p class="err">로그인 실패: <%= cnt %></p>
+                <% } else { %>
+                  <br>
+                <% } %>
+              </li>
+              <li>
+                <button class="btn btn-light" type="submit">Login</button>
+              </li>
+            </ul>
+          </form>
+        </div>
+      </section>
+
+      <section id="auth-menu">
+        <ul>
+          <li>
+            <a href="/terms">Sign up</a>
+          </li>
+          <li>
+            <a href="/find-pw">PW 찾기</a>
+          </li>
+        </ul>
+      </section>
+    </main>
+
+    <%- include("../includes/footer") %>
+  </body>
+</html>

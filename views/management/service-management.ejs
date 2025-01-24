@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <%- include("../includes/head", { pageTitle: "Management" }) %>
+
+  <body>
+    <%- include("../includes/header") %>
+
+    <main>
+      <%- include("includes/management-menu") %>
+
+      <section class="management" id="service-management">
+        <div id="contents">
+          <h2>글 관리</h2>
+          <hr>
+          <ul class="white-box">
+            <% if (contentsList[0]) { %>
+              <li class="sortation">
+                <p>제목</p>
+                <p>버튼</p>
+              </li>
+              <% for (let content of contentsList) { %>
+                <li>
+                  <p><%= content.title %></p>
+                  <% if (content.status !== "hidden") { %>
+                    <a class="btn btn-dark box-btn" href="/management/service/contents/<%= content._id %>?value=hidden">숨김</a>
+                  <% } else { %>
+                    <a class="btn btn-dark box-btn" href="/management/service/contents/<%= content._id %>?value=view">보이기</a>
+                  <% } %>
+                  <a class="btn btn-dark box-btn" href="/management/service/contents/<%= content._id %>?value=delete">삭제</a>
+                </li>
+              <% } %>
+            <% } else { %>
+              <li class="empty emphasis">
+                <p>관련 컨텐츠가 없습니다.</p>
+              </li>
+            <% } %>
+          </ul>
+        </div>
+
+        <div id="history">
+          <h2>History 관리</h2>
+          <hr>
+          <ul class="white-box">
+            <% if (historyList[0]) { %>
+              <li class="sortation">
+                <p>제목</p>
+                <p>버튼</p>
+              </li>
+              <% for (let history of historyList) { %>
+                <li>
+                  <p><%= history.title %></p>
+                <% if (history.status === "view") { %>
+                  <a class="btn btn-dark box-btn" href="/management/service/history/<%= history._id %>?value=hidden">숨김</a>
+                <% } else { %>
+                  <a class="btn btn-dark box-btn" href="/management/service/history/<%= history._id %>?value=view">보이기</a>
+                <% } %>
+                <a class="btn btn-dark box-btn" href="/management/service/history/<%= history._id %>?value=delete">삭제</a>
+                </li>
+              <% } %>
+            <% } else { %>
+              <li class="empty emphasis">
+                <p>관련 컨텐츠가 없습니다.</p>
+              </li>
+            <% } %>
+          </ul>
+        </div>
+
+        <% if (locals.admin) { %>
+          <div class="revise" id="contents-revise">
+            <h2>글 수정</h2>
+            <hr>
+            <ul class="white-box">
+              <% if (noHiddenContents[0]) { %>
+                <% for (let content of noHiddenContents) { %>
+                  <li>
+                    <a href="/management/service/content/revise/<%= content._id %>"><%= content.title %></a>
+                  </li>
+                <% } %>
+              <% } else { %>
+                <li class="empty emphasis">
+                  <p>관련 컨텐츠가 없습니다.</p>
+                </li>
+              <% } %>
+            </ul>
+          </div>
+
+          <div class="revise" id="history-revise">
+            <h2>History 수정</h2>
+            <hr>
+            <ul class="white-box">
+              <% if (noHiddenHistory[0]) { %>
+                <% for (let history of noHiddenHistory) { %>
+                  <li>
+                    <a href="/management/service/history/revise/<%= history._id %>"><%= history.title %></a>
+                  </li>
+                <% } %>
+              <% } else { %>
+                <li class="empty emphasis">
+                  <p>관련 컨텐츠가 없습니다.</p>
+                </li>
+              <% } %>
+            </ul>
+          </div>
+
+          <div id="skill-revise">
+            <h2>기술 수정</h2>
+            <hr>
+            <ul class="white-box">
+              <% if (skillList) { %>
+                <li class="sortation">
+                  <p>그룹</p>
+                  <p>언어</p>
+                  <p>링크</p>
+                  <p>버튼</p>
+                </li>
+                <% for (let skill of skillList) { %>
+                  <li>
+                    <p><%= skill.group %></p>
+                    <p><%= skill.language %></p>
+                    <p><%= skill.link %></p>
+                    <a class="btn btn-dark box-btn" href="/management/service/skills/<%= skill._id %>">삭제</a>
+                  </li>
+                <% } %>
+              <% } else { %>
+                <li class="empty emphasis">
+                  <p>관련 컨텐츠가 없습니다.</p>
+                </li>
+              <% } %>
+            </ul>
+            <form action="/management/service/new-skill" method="POST">
+              <input type="hidden" name="_csrf" value="<%= locals.csrfToken %>">
+
+              <ul id="add-skill">
+                <li>
+                  <select name="group" id="group" required>
+                    <option value="frontEnd">frontEnd</option>
+                    <option value="backEnd">backEnd</option>
+                    <option value="database">database</option>
+                    <option value="versionControl">versionControl</option>
+                    <option value="tools">tools</option>
+                    <option value="studying">studying</option>
+                  </select>
+                </li>
+                <li>
+                  <input type="text" id="language" name="language" placeholder="언어" required>
+                </li>
+                <li>
+                  <input type="url" id="link" name="link" placeholder="링크" required>
+                </li>
+                <li>
+                  <button class="btn btn-light" type="submit">등록</button>
+                </li>
+              </ul>
+            </form>
+          </div>
+        <% } %>
+      </section>
+    </main>
+
+    <%- include("../includes/footer") %>
+  </body>
+</html>

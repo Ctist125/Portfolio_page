@@ -1,0 +1,53 @@
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <!--
+    This website uses the 'Nanum Gothic'font, designed by Sandoll Communication, licensed under the SIL Open Font License, Version 1.1.
+  -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Nanum+Gothic:wght@400;700;800&display=swap"
+    rel="stylesheet"
+  />
+
+  <link rel="icon" href="/resource/system-image/favicon.ico" type="image/x-icon">
+
+  <link rel="stylesheet" href="/styles/share.css" />
+  <script src="/scripts/mobile-menu.js" defer></script>
+
+  <% if (pageTitle === "Tief's Portfolio") { %>
+    <link rel="stylesheet" href="/styles/styles.css" />
+  <% } else if (pageTitle === "Blog list" || pageTitle === "Writing list") { %>
+    <link rel="stylesheet" href="/styles/basic-list.css" />
+  <% } else if (pageTitle === "Login" || pageTitle === "비밀번호 찾기") { %>
+    <link rel="stylesheet" href="/styles/login.css" />
+  <% } else if (pageTitle === "약관 동의") { %>
+    <link rel="stylesheet" href="/styles/terms.css" />
+  <% } else if (pageTitle === "Error" || pageTitle === "Success" || pageTitle === "Email") { %>
+    <link rel="stylesheet" href="/styles/announcement.css" />
+  <% } else if (pageTitle === "Sign up") { %>
+    <link rel="stylesheet" href="/styles/login.css" />
+    <link rel="stylesheet" href="/styles/signup.css" />
+  <% } else if (pageTitle === "Management") { %>
+    <link rel="stylesheet" href="/styles/management.css" />
+  <% } else if (pageTitle === "Portfolio") { %>
+    <link rel="stylesheet" href="/styles/portfolio.css" />
+  <% } else if (pageTitle === "글 쓰기" || pageTitle === "History 작성") { %>
+    <link rel="stylesheet" href="/styles/writing.css" />
+    <script src="/scripts/image-preview.js" defer></script>
+  <% } else if (pageTitle === "이용 약관") { %>
+    <link rel="stylesheet" href="/styles/view-terms.css" />
+  <% } else if (pageTitle === "License") { %>
+    <link rel="stylesheet" href="/styles/license.css" />
+  <% } else if (pageTitle === "내 정보") { %>
+    <link rel="stylesheet" href="/styles/info.css" />
+  <% } else if (pageTitle === "Log 수집 약관") { %>
+    <link rel="stylesheet" href="/styles/log.css" />
+  <% } else { %>
+    <link rel="stylesheet" href="/styles/detail-view.css" />
+  <% } %>
+
+  <title><%= pageTitle %></title>
+</head>

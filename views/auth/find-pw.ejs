@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <%- include("../includes/head", { pageTitle: "비밀번호 찾기" }) %>
+
+  <body>
+    <%- include("../includes/header") %>
+
+    <main>
+      <section class="auth">
+        <div class="auth-contents">
+          <h1>비밀번호 찾기</h1>
+          <form action="/find-pw" method="POST">
+            <input type="hidden" name="_csrf" value="<%= locals.csrfToken %>">
+
+            <ul>
+              <li>
+                <input type="text" id="user-name" name="userName" placeholder="닉네임" value="<%= userName %>" required>
+              </li>
+              <li>
+                <input type="email" id="email" name="email" placeholder="email" value="<%= email %>" required>
+              </li>
+              <li>
+                <% if (error) { %>
+                  <p class="err"><%= error %></p>
+                <% } else { %>
+                  <br>
+                <% } %>
+              </li>
+              <li>
+                <button class="btn btn-light" type="submit">다음</button>
+              </li>
+            </ul>
+          </form>
+        </div>
+      </section>
+    </main>
+
+    <%- include("../includes/footer") %>
+  </body>
+</html>

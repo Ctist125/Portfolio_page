@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <%- include("../includes/head", { pageTitle: "약관 동의" }) %>
+
+  <body>
+    <%- include("../includes/header") %>
+
+    <main>
+      <section id="terms">
+        <h1>약관</h1>
+        <form action="/terms" method="POST">
+          <input type="hidden" name="_csrf" value="<%= locals.csrfToken %>">
+
+          <ul>
+            <li><h2>서비스 이용 약관</h2></li>
+            <li class="text-box">
+              <%- include("./includes/terms/service-terms") %>
+            </li>
+            <li class="agreement">
+              <input
+                type="checkbox"
+                id="service-terms"
+                name="serviceTerms"
+                required
+              />
+              <label for="service-terms">위 약관에 동의합니다. (필수)</label>
+            </li>
+          </ul>
+
+          <ul>
+            <li><h2>회원가입 약관</h2></li>
+            <li class="text-box">
+              <%- include("./includes/terms/sign-up-terms") %>
+            </li>
+            <li class="agreement">
+              <input
+                type="checkbox"
+                id="sign-up-terms"
+                name="signupTerms"
+                required
+              />
+              <label for="sign-up-terms">위 약관에 동의합니다. (필수)</label>
+            </li>
+          </ul>
+
+          <ul>
+            <li><h2>개인정보 취급 방침</h2></li>
+            <li class="text-box">
+              <%- include("./includes/terms/personal-info-terms") %>
+            </li>
+            <li class="agreement">
+              <input
+                type="checkbox"
+                id="personal-info-terms"
+                name="personalInfoTerms"
+                required
+              />
+              <label for="personal-info-terms"
+                >위 약관에 동의합니다. (필수)</label
+              >
+            </li>
+          </ul>
+
+          <ul>
+            <li><h2>미성년자 회원가입</h2></li>
+            <li class="text-box">
+              <%- include("./includes/terms/child-terms") %>
+            </li>
+            <li class="agreement">
+              <input
+                type="checkbox"
+                id="child-terms"
+                name="childTerms"
+                required
+              />
+              <label for="child-terms">위 약관에 동의합니다. (필수)</label>
+            </li>
+          </ul>
+          <div id="btn-div">
+            <button class="btn btn-light" type="submit">다음</button>
+          </div>
+        </form>
+      </section>
+    </main>
+
+    <%- include("../includes/footer") %>
+  </body>
+</html>

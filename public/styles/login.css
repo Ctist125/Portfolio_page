@@ -1,0 +1,111 @@
+main {
+  padding: 0;
+}
+
+.auth {
+  display: flex;
+  align-items: end;
+  text-align: center;
+  height: 60vh;
+}
+
+.auth-contents {
+  width: 40rem;
+  margin: 0 auto;
+}
+
+.auth-contents h1 {
+  font-size: 3rem;
+  font-weight: 800;
+  margin-bottom: var(--size-space-large);
+}
+
+.auth-contents ul {
+  padding: 0 var(--size-space-large);
+}
+
+.auth-contents li {
+  margin: var(--size-space-basic);
+}
+
+.auth-contents input {
+  color: white;
+  background-color: var(--color-blue-900);
+  box-sizing: border-box;
+  border: 1px solid var(--color-orange-500);
+  border-radius: var(--border-radius-small);
+  font: 700 var(--size-font-xlarge) "Nanum Gothic", sans-serif;
+  width: 100%;
+  padding: var(--size-space-xsmall);
+}
+
+#auth-menu {
+  width: 30rem;
+  margin: 0 auto;
+}
+
+#auth-menu ul {
+  display: flex;
+  justify-content: space-between;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+#auth-menu a {
+  color: var(--color-orange-500);
+  text-decoration: none;
+}
+
+#auth-menu a:hover,
+#auth-menu a:active {
+  text-decoration: underline;
+  font-weight: 700;
+}
+
+footer {
+  display: flex;
+  height: 35vh;
+  align-items: end;
+  justify-content: center;
+}
+
+@media (max-width: 74.9rem) {
+  main {
+    padding-top: 5rem;
+  }
+
+  #auth-menu {
+    padding-bottom: 2.5rem;
+  }
+
+  footer {
+    display: block;
+    height: inherit;
+  }
+}
+
+@media (max-width: 63.9rem) {
+  main {
+    padding: 0;
+  }
+
+  #auth-menu {
+    padding: 0;
+  }
+
+  footer {
+    display: flex;
+    height: 35vh;
+  }
+}
+
+@media (max-width: 47.9rem) {
+  #auth-menu {
+    width: 90%;
+  }
+
+  footer {
+    display: none;
+  }
+}

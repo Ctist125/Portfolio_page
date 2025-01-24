@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <%- include("../includes/head", { pageTitle: "Portfolio" }) %>
+
+  <body>
+    <%- include("../includes/header") %>
+
+    <main>
+      <h1>Portfolio</h1>
+
+      <div id="white-box">
+        <section id="menu">
+          <hr />
+          <div id="search-box">
+            <form action="/portfolio" method="GET">
+              <ul>
+                <li>
+                  <label class="emphasis" for="coding-language">언어별 검색</label>
+                </li>
+                <li>
+                  <input
+                    type="text"
+                    id="coding-language"
+                    name="codingLanguage"
+                    placeholder="검색"
+                    required
+                  />
+                </li>
+                <li>
+                  <button class="btn btn-light" type="submit">검색</button>
+                </li>
+              </ul>
+            </form>
+          </div>
+
+          <hr class="middle-line" />
+
+          <div id="recomment">
+            <h2>추천 검색어</h2>
+
+            <ul>
+              <li>
+                <a href="/portfolio?codingLanguage=ejs">ejs</a>
+              </li>
+              <li>
+                <a href="/portfolio?codingLanguage=node.js">Node.js</a>
+              </li>
+              <li>
+                <a href="/portfolio?codingLanguage=express.js">Express.js</a>
+              </li>
+              <li>
+                <a href="/portfolio?codingLanguage=mongodb">MongoDB</a>
+              </li>
+              <li>
+                <a href="/portfolio?codingLanguage=figma">Figma</a>
+              </li>
+            </ul>
+          </div>
+
+          <hr />
+        </section>
+
+        <section id="contents-list">
+          <% if (contentsList[0]) { %>
+            <% for (let num in contentsList[contentsPage - 1]) { %>
+              <ul>
+                <li>
+                  <img src="/resource/contents-image/<%= contentsList[contentsPage - 1][num].image %>" alt="Thumbnail">
+                </li>
+                <li class="contents">
+                  <h2><%= contentsList[contentsPage - 1][num].title %></h2>
+                  <p><%= contentsList[contentsPage - 1][num].startDate %> ~ <%= contentsList[contentsPage - 1][num].endDate %></p>
+                  <p class="description"><%= contentsList[contentsPage - 1][num].description %></p>
+                  <a class="btn btn-light" href="/portfolio/details/<%= contentsList[contentsPage - 1][num]._id %>">상세보기</a>
+                </li>
+              </ul>
+              <br>
+            <% } %>
+          <% } else { %>
+            <ul class="empty">
+              <li>
+                <p>현재 컨텐츠가 존재하지 않습니다.</p>
+              </li>
+            </ul>
+          <% } %>
+        </section>
+
+        <section id="contentsPageList">
+          <% if (contentsPage > 1) { %>
+            <a href="/portfolio?contentsPage=<%= parseInt(contentsPage) - 1 %>">이전 &lt;</a>
+          <% } else { %>
+            <p></p>
+          <% } %>
+          <p><%= contentsPage %>/<%= contentsList.length %></p>
+          <% if (contentsPage < contentsList.length) { %>
+            <a href="/portfolio?contentsPage=<%= parseInt(contentsPage) + 1 %>">&gt; 다음</a>
+          <% } else { %>
+            <p></p>
+          <% } %>
+        </section>
+      </div>
+    </main>
+
+    <%- include("../includes/footer") %>
+  </body>
+</html>

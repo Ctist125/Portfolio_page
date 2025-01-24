@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <%- include("../includes/head", { pageTitle: "Tief's Portfolio" }) %>
+
+  <body>
+    <%- include("../includes/header") %>
+
+    <main>
+      <section id="main-page">
+        <ul>
+          <li>
+            <p>계속 새로운 것에 도전하고, 성공하는 것을 좋아하는</p>
+            <p class="emphasis">도파민 형 인간 <strong>Tief</strong>입니다.</p>
+          </li>
+          <li id="btn-list">
+            <a class="btn btn-light" href="#profile">Profile</a>
+          </li>
+        </ul>
+      </section>
+
+      <section id="profile">
+        <h2>Profile</h2>
+        <div id="profile-contents">
+          <div id="profile-left">
+            <div id="profile-text">
+              <div id="vertical-bar"></div>
+              <ul>
+                <li>
+                  <p class="emphasis">닉네임: Tief</p>
+                </li>
+                <li>
+                  <p class="emphasis">E-mail: tief125@naver.com</p>
+                </li>
+                <li>
+                  <p>거주 지역: 대구광역시</p>
+                </li>
+                <li>
+                  <p>학력: 계명대학교 기계공학과 재학 중</p>
+                </li>
+              </ul>
+            </div>
+            <ul id="sns-list">
+              <li>
+                <a class="btn btn-light" href="/blog-list">Blog</a>
+              </li>
+              <li>
+                <a
+                  class="btn btn-light"
+                  target="_blank"
+                  href="https://github.com/Ctist125"
+                  >Git Hub</a
+                >
+              </li>
+            </ul>
+          </div>
+          <img src="/resource/system-image/logo_text.png" alt="Logo image" />
+        </div>
+      </section>
+
+      <section id="skills">
+        <h2>Skills</h2>
+        <div id="list">
+          <div id="front-end">
+            <h3>Front-end</h3>
+            <ul>
+              <% for (let frontEndList of languageList.frontEnd) { %>
+              <li>
+                <a class="emphasis" target="_blank" href="<%= frontEndList.link %>"
+                  ><%= frontEndList.language %></a
+                >
+              </li>
+              <% } %>
+            </ul>
+          </div>
+
+          <div id="back-end">
+            <h3>Back-end</h3>
+            <ul>
+              <% for (let backEndList of languageList.backEnd) { %>
+              <li>
+                <a class="emphasis" target="_blank" href="<%= backEndList.link %>"
+                  ><%= backEndList.language %></a
+                >
+              </li>
+              <% } %>
+            </ul>
+          </div>
+
+          <div id="database">
+            <h3>Database</h3>
+            <ul>
+              <% for (let databaseList of languageList.database) { %>
+              <li>
+                <a class="emphasis" target="_blank" href="<%= databaseList.link %>"
+                  ><%= databaseList.language %></a
+                >
+              </li>
+              <% } %>
+            </ul>
+          </div>
+
+          <div id="version-control">
+            <h3>Version Control</h3>
+            <ul>
+              <% for (let versionControlList of languageList.versionControl) {
+              %>
+              <li>
+                <a class="emphasis" target="_blank" href="<%= versionControlList.link %>"
+                  ><%= versionControlList.language %></a
+                >
+              </li>
+              <% } %>
+            </ul>
+          </div>
+
+          <div id="tools">
+            <h3>Tools</h3>
+            <ul>
+              <% for (let toolList of languageList.tools) { %>
+              <li>
+                <a class="emphasis" target="_blank" href="<%= toolList.link %>"
+                  ><%= toolList.language %></a
+                >
+              </li>
+              <% } %>
+            </ul>
+          </div>
+
+          <div id="studying">
+            <h3>Studying</h3>
+            <ul>
+              <% for (let studyingList of languageList.studying) { %>
+              <li>
+                <a class="emphasis" target="_blank" href="<%= studyingList.link %>"
+                  ><%= studyingList.language %></a
+                >
+              </li>
+              <% } %>
+            </ul>
+          </div>
+        </div>
+        <p class="emphasis">
+          위 기술과 도구가 현재 사이트에 무조건 사용되었다는 뜻은 아니며, 단지
+          사용할 수 있는 도구라는 것을 표시하기 위한 것입니다.
+        </p>
+      </section>
+
+      <section id="portfolio">
+        <h2>Portfolio</h2>
+        <ul>
+          <% if (viewContents[0]) { %>
+            <% if (viewContents.length < 3) { %>
+              <% for (let content of viewContents) { %>
+                <li>
+                  <img src="/resource/contents-image/<%= content.image %>" alt="content image">
+                  <div class="content">
+                    <h3><%= content.title %></h3>
+                    <p><%= content.startDate %> ~ <%= content.endDate %></p>
+                    <p class="description"><%= content.description %></p>
+                    <a class="btn btn-light" href="/portfolio/details/<%= content._id %>">상세보기</a>
+                  </div>
+                </li>
+              <% } %>
+            <% } else { %>
+              <% for (let i = 0; i < 3; i++) { %>
+                <li>
+                  <img src="/resource/contents-image/<%= viewContents[i].image %>" alt="content image">
+                  <div class="content">
+                    <h3><%= viewContents[i].title %></h3>
+                    <p><%= viewContents[i].startDate %> ~ <%= viewContents[i].endDate %></p>
+                    <p class="description"><%= viewContents[i].description %></p>
+                    <a class="btn btn-light" href="/portfolio/details/<%= viewContents[i]._id %>">상세보기</a>
+                  </div>
+                </li>
+              <% } %>
+            <% } %>
+          <% } else { %>
+            <li id="empty">
+              <p class="emphasis">현재 컨텐츠가 존재하지 않습니다.</p>
+            </li>
+          <% } %>
+        </ul>
+      </section>
+
+      <section id="history">
+        <h2>History</h2>
+        <div id="history-contents">
+          <img src="/resource/system-image/logo_no_text.png" alt="Logo image">
+          <ul>
+            <% if (viewHistory[0]) { %>
+              <% for (let history of viewHistory) { %>
+                <li>
+                  <h3><%= history.title %></h3>
+                  <p><%= history.startDate %> ~ <%= history.endDate %></p>
+                  <p class="description"><%= history.description %></p>
+                </li>
+              <% } %>
+            <% } else { %>
+              <li>
+                <h3>History가 없습니다.</h3>
+              </li>
+            <% } %>
+          </ul>
+        </div>
+      </section>
+    </main>
+
+    <%- include("../includes/footer") %>
+  </body>
+</html>

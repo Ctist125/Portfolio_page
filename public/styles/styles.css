@@ -1,0 +1,299 @@
+h2 {
+  text-align: center;
+  font-size: 2.25rem;
+  font-weight: 800;
+  margin: 0;
+  padding: 5rem 0;
+}
+
+#main-page {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  /* Unsplash의 Milad Fakurian */
+  background-image: url("/resource/system-image/brain.jpg");
+  background-position: center;
+  background-size: cover;
+  color: white;
+  height: 35rem;
+}
+
+#main-page ul {
+  background-color: var(--colort-blue-900);
+  width: var(--size-card-large);
+  padding: 4rem var(--size-space-xlarge);
+  border-radius: var(--border-radius-basic);
+  box-shadow: 3px 4px 8px rgba(0, 0, 0, 0.5);
+}
+
+#main-page li {
+  text-align: center;
+  font-size: var(--size-font-large);
+}
+
+#main-page strong {
+  font-size: 3rem;
+  font-weight: 800;
+}
+
+#btn-list {
+  margin-top: var(--size-space-large);
+}
+
+#profile-contents {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: var(--size-width-laptop);
+  margin: 0 auto;
+}
+
+#profile-contents img {
+  width: 500px;
+  height: 500px;
+}
+
+#profile-left {
+  width: 500px;
+}
+
+#profile-text {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+#profile-text #vertical-bar {
+  background-color: var(--color-orange-500);
+  width: var(--size-space-small);
+  height: 12.5rem;
+}
+
+#profile-text li {
+  font-size: var(--size-font-large);
+  margin-left: var(--size-space-basic);
+}
+
+#sns-list {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+#sns-list li {
+  margin: 0 var(--size-space-basic);
+}
+
+#skills {
+  color: var(--color-blue-900);
+  background: linear-gradient(0.375turn, #90b8db, #b993a9, #5847c9);
+}
+
+#skills #list {
+  box-shadow: none;
+  background-color: transparent;
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  gap: var(--size-space-large);
+  width: var(--size-width-laptop);
+  margin: 0 auto;
+}
+
+#skills div {
+  border-radius: var(--border-radius-small);
+  padding: var(--size-space-basic);
+  background-color: rgba(255, 255, 255, 0.25);
+  box-shadow: 3px 4px 8px rgba(0, 0, 0, 0.5);
+}
+
+#skills h3 {
+  text-align: center;
+  font-size: var(--size-font-large);
+  font-weight: 800;
+  margin-bottom: var(--size-space-large);
+}
+
+#skills li {
+  margin: var(--size-space-basic);
+}
+
+#skills a {
+  color: var(--color-blue-900);
+  text-decoration: none;
+}
+
+#skills a:hover,
+#skills a:active {
+  text-decoration: underline;
+}
+
+#skills p {
+  color: white;
+  text-align: center;
+  margin: 0;
+  padding-bottom: 5rem;
+}
+
+#portfolio {
+  background-image: url(/resource/system-image/bulb.jpg);
+  background-position: center;
+  background-size: cover;
+  color: var(--color-blue-900);
+  padding-bottom: 5rem;
+}
+
+#portfolio li {
+  display: flex;
+  text-align: center;
+  background-color: rgba(255, 255, 255, 0.5);
+  border-radius: var(--border-radius-basic);
+  overflow: hidden;
+  margin: 0 auto 5rem auto;
+  width: var(--size-width-laptop);
+  height: 20rem;
+}
+
+#portfolio img {
+  object-fit: cover;
+  object-position: center;
+  overflow: hidden;
+  width: 50rem;
+  height: 100%;
+}
+
+#portfolio h3 {
+  font-size: 1.5rem;
+}
+
+#portfolio .content {
+  width: 100%;
+  padding: var(--size-space-basic);
+}
+
+#portfolio .description {
+  height: 7rem;
+}
+
+.description {
+  text-align: left;
+  white-space: pre-wrap;
+}
+
+#empty {
+  align-items: center;
+  justify-content: center;
+}
+
+#history {
+  color: var(--color-blue-900);
+  background-color: var(--color-orange-500);
+  padding-bottom: 5rem;
+}
+
+#history-contents {
+  display: flex;
+  align-items: start;
+  justify-content: space-between;
+  width: var(--size-width-laptop);
+  margin: 0 auto;
+}
+
+#history-contents img {
+  width: 20rem;
+  border-radius: 10rem;
+}
+
+#history-contents ul {
+  width: 50%;
+  padding-left: 5rem;
+  border-left: var(--size-space-small) solid var(--color-blue-900);
+}
+
+#history-contents h3 {
+  font-size: 1.5rem;
+}
+
+@media (max-width: 74.9rem) {
+  #skills #list {
+    padding: var(--size-space-basic) 0;
+    width: 90%;
+  }
+
+  #portfolio li {
+    width: 90%;
+  }
+}
+
+@media (max-width: 63.9rem) {
+  #profile-contents {
+    flex-direction: column-reverse;
+    width: 90%;
+    padding-bottom: 5rem;
+  }
+
+  #skills p {
+    width: 90%;
+    margin: 0 auto;
+  }
+
+  #portfolio img {
+    width: 20rem;
+  }
+
+  #history-contents {
+    width: 90%;
+  }
+
+  #history-contents img {
+    margin-right: var(--size-space-basic);
+  }
+}
+
+@media (max-width: 47.9rem) {
+  #main-page ul {
+    width: 70%;
+  }
+
+  #profile-contents img {
+    width: 90%;
+    height: 90%;
+  }
+
+  #profile-left {
+    width: 90%;
+  }
+  
+  #skills #list {
+    grid-template-columns: 1fr;
+  }
+
+  #portfolio li {
+    flex-direction: column;
+    height: 100%;
+    width: 90%;
+    margin: 0 auto 3rem auto;
+  }
+
+  #portfolio img {
+    width: 100%;
+    height: 20rem;
+  }
+
+  #portfolio .content {
+    box-sizing: border-box;
+    padding: 0 var(--size-space-basic) var(--size-space-basic) var(--size-space-basic);
+  }
+
+  #history-contents {
+    flex-direction: column;
+  }
+
+  #history-contents img {
+    margin: 0 auto;
+  }
+
+  #history-contents ul {
+    box-sizing: border-box;
+    width: 100%;
+  }
+}

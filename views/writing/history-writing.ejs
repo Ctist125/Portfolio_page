@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <%- include("../includes/head", { pageTitle: "History 작성" }) %>
+
+  <body>
+    <%- include("../includes/header") %>
+
+    <main>
+      <h1>History 작성</h1>
+
+      <section class="white-box" id="history-input">
+        <form action="<%= url %>" method="POST">
+          <input type="hidden" name="_csrf" value="<%= locals.csrfToken %>">
+
+          <ul>
+            <li>
+              <label class="emphasis" for="title">제목</label>
+            </li>
+            <li>
+              <input
+                class="emphasis"
+                type="text"
+                id="title"
+                name="title"
+                placeholder="Title"
+                value="<%= flashData.title %>"
+                required
+              />
+            </li>
+            <li>
+                <% if (flashData.error.titleError) { %>
+                    <p class="err"><%= flashData.error.titleError %></p>
+                <% } else { %>
+                    <br />
+                <% } %>
+            </li>
+            <li class="date-input">
+              <label class="emphasis" for="start-date">시작 날짜</label>
+              <p>~</p>
+              <label class="emphasis" for="end-date">종료 날짜</label>
+            </li>
+            <li class="date-input">
+              <input type="date" id="start-date" name="startDate" value="<%= flashData.startDate %>" required />
+              <p>~</p>
+              <input type="date" id="end-date" name="endDate" value="<%= flashData.endDate %>" required />
+            </li>
+            <li>
+              <br />
+            </li>
+            <li>
+              <label class="emphasis" for="description">설명</label>
+            </li>
+            <li>
+              <textarea
+                name="description"
+                id="description"
+                rows="20"
+                placeholder="설명"
+                required
+              ><%= flashData.description %></textarea>
+            </li>
+            <li>
+                <% if (flashData.error.descriptionError) { %>
+                    <p class="err"><%= flashData.error.descriptionError %></p>
+                <% } else { %>
+                    <br>
+                <% } %>
+            </li>
+            <li id="button-list">
+              <button type="submit" class="btn btn-light">등록</button>
+            </li>
+          </ul>
+        </form>
+      </section>
+    </main>
+
+    <%- include("../includes/footer") %>
+  </body>
+</html>

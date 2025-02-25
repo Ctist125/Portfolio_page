@@ -1,0 +1,49 @@
+main {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  background-color: var(--color-blue-900);
+  height: 100vh;
+  padding: 0;
+}
+
+#main-logo img {
+  width: 7.5rem;
+}
+
+#contents {
+  width: var(--size-width-laptop);
+  text-align: center;
+  box-sizing: border-box;
+  padding: 0 var(--size-space-large);
+}
+
+#contents #text-box {
+  color: var(--color-black-600);
+  background-color: white;
+  box-sizing: border-box;
+  border-radius: var(--border-radius-basic);
+  overflow: scroll;
+  text-align: left;
+  width: 100%;
+  height: 15rem;
+  padding: var(--size-space-basic);
+}
+
+#contents #checkbox {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: var(--size-space-basic);
+}
+
+#contents #checkbox label {
+  margin-left: var(--size-space-basic);
+}
+
+@media (max-width: 63.8rem) {
+  #contents {
+    width: 100%;
+  }
+}

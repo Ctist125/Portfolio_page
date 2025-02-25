@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <%- include("../includes/head", { pageTitle: "내 정보" }) %>
+
+  <body>
+    <%- include("../includes/header") %>
+
+    <main>
+      <h1>내 정보</h1>
+
+      <section id="fixed">
+        <h2>기본 정보</h2>
+
+        <ul>
+          <li>
+            <p>닉네임: <%= userInfo.userName %></p>
+          </li>
+          <li>
+            <p>이메일: <%= userInfo.email %></p>
+          </li>
+        </ul>
+      </section>
+
+      <section id="pw">
+        <h2>Password 변경</h2>
+
+        <ul>
+          <li id="first" class="<%= status.first %>">
+            <form action="/auth-num" method="POST">
+              <input type="hidden" name="_csrf" value="<%= locals.csrfToken %>">
+              <button class="btn btn-light" type="submit">인증번호</button>
+            </form>
+          </li>
+          <li id="next" class="<%= status.second %>">
+            <form action="/pw-change" method="POST">
+              <input type="hidden" name="_csrf" value="<%= locals.csrfToken %>">
+              <ul>
+                <li>
+                  <p class="err">메일로 인증번호가 전송되었습니다.</p>
+                </li>
+                <li>
+                  <input type="password" name="pw" id="pw" minlength="8" maxlength="15" placeholder="변경할 Password" value="<%= inputValue.pw %>" required>
+                </li>
+                <li>
+                  <input type="password" name="pwCheck" id="pw-check" placeholder="Password 확인" value="<%= inputValue.pwCheck %>" required>
+                </li>
+                <li>
+                  <input type="text" name="authNumCheck" id="auth-num-check" placeholder="인증번호" value="<%= inputValue.authNumCheck %>" required>
+                </li>
+                <li>
+                  <% if (inputValue.error) { %>
+                    <p class="err"><%= inputValue.error %></p>
+                  <% } else { %>
+                    <br>
+                  <% } %>
+                </li>
+                <li>
+                  <button class="btn btn-light" type="submit">변경</button>
+                </li>
+              </ul>
+            </form>
+          </li>
+        </ul>
+      </section>
+    </main>
+
+    <%- include("../includes/footer") %>
+  </body>
+</html>

@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <%- include("../includes/head", { pageTitle: content.title }) %>
+
+  <body>
+    <%- include("../includes/header") %>
+
+    <main>
+      <section id="contents-text">
+        <ul>
+          <li>
+            <h1><%= content.title %></h1>
+          </li>
+          <li>
+            <img src="/resource/contents-image/<%= content.image %>" alt="Contents thumbnail">
+          </li>
+          <li>
+            <h2>기간: <%= content.startDate %> ~ <%= content.endDate %></h2>
+          </li>
+          <li class="language">
+            <h2>사용 언어, 기술 및 프로그램</h2>
+            <p><%= content.language %></p>
+          </li>
+          <li>
+            <h2>설명</h2>
+            <p class="description"><%= content.description %></p>
+          </li>
+          <li class="btn-list">
+            <a class="btn btn-dark" href="<%= content.reference %>" target="_blank">참고자료</a>
+          </li>
+        </ul>
+      </section>
+
+      <section id="comments">
+        <% if (locals.auth) { %>
+          <form action="/portfolio/details/<%= content._id %>" method="POST">
+            <input type="hidden" name="_csrf" value="<%= locals.csrfToken %>">
+            
+            <ul id="comment-input">
+              <li>
+                <input type="text" id="comment-text" name="commentText" maxlength="40" placeholder="댓글을 입력해 주십시오. (40자 이하)" required>
+              </li>
+              <li>
+                <button class="btn btn-dark" type="submit">등록</button>
+              </li>
+            </ul>
+          </form>
+
+          <% if (!commentsCheck) { %>
+            <p class="no-comment no-comment-auth">댓글이 없습니다.</p>
+          <% } else { %>
+            <ul class="comment comment-auth">
+              <li>
+                <div>
+                  <% for (let comment of comments[commentsPage - 1]) { %>
+                    <ul>
+                      <li>
+                        <p class="user-name emphasis"><%= comment.userName %></p>
+                        <p><%= comment.commentText %></p>
+                        <% if (comment.userName === locals.userName || locals.admin || locals.manager) { %>
+                          <a class="btn btn-dark" href="/portfolio/comment-delete/<%= comment._id %>">삭제</a>
+                        <% } %>
+                      </li>
+                    </ul>
+                  <% } %>
+                </div>
+              </li>
+              <li class="commentsPageList">
+                <% if (commentsPage > 1) { %>
+                  <a href="/portfolio/details/<%= content._id %>?commentsPage=<%= parseInt(commentsPage) - 1 %>">이전 &lt;</a>
+                <% } else { %>
+                  <p></p>
+                <% } %>
+                <p><%= commentsPage %>/<%= comments.length %></p>
+                <% if (commentsPage < comments.length) { %>
+                  <a href="/portfolio/details/<%= content._id %>?commentsPage=<%= parseInt(commentsPage) + 1 %>">&gt; 다음</a>
+                <% } else { %>
+                  <p></p>
+                <% } %>
+              </li>
+            </ul>
+          <% } %>
+        <% } else { %>
+          <% if (!commentsCheck) { %>
+            <p class="no-comment">댓글이 없습니다.</p>
+          <% } else { %>
+            <ul class="comment">
+              <li>
+                <div>
+                  <% for (let comment of comments[commentsPage - 1]) { %>
+                    <ul>
+                      <li>
+                        <p class="user-name emphasis"><%= comment.userName %></p>
+                        <p><%= comment.commentText %></p>
+                        <% if (comment.userName === locals.userName || locals.admin || locals.manager) { %>
+                          <a class="btn btn-dark" href="/portfolio/comment-delete/<%= comment._id %>">삭제</a>
+                        <% } %>
+                      </li>
+                    </ul>
+                  <% } %>
+                </div>
+              </li>
+              <li class="commentsPageList">
+                <% if (commentsPage > 1) { %>
+                  <a href="/portfolio/details/<%= contents._id %>?commentsPage=<%= parseInt(commentsPage) - 1 %>">이전 &lt;</a>
+                <% } else { %>
+                  <p></p>
+                <% } %>
+                <p><%= commentsPage %>/<%= comments.length %></p>
+                <% if (commentsPage < comments.length) { %>
+                  <a href="/portfolio/details/<%= contents._id %>?commentsPage=<%= parseInt(commentsPage) + 1 %>">&gt; 다음</a>
+                <% } else { %>
+                  <p></p>
+                <% } %>
+              </li>
+            </ul>
+          <% } %>
+        <% } %>
+      </section>
+    </main>
+
+    <%- include("../includes/footer") %>
+  </body>
+</html>

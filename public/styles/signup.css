@@ -1,0 +1,30 @@
+.auth {
+  height: calc(100vh - 11rem);
+  align-items: center;
+}
+
+.auth p {
+  color: white;
+}
+
+footer {
+  height: auto;
+}
+
+@media (max-width: 119rem) {
+  main {
+    padding-top: 5rem;
+  }
+}
+
+@media (max-width: 74.9rem) {
+  .auth {
+    height: auto;
+  }
+}
+
+@media (max-width: 63.9rem) {
+  .auth {
+    height: calc(100vh - 16rem);
+  }
+}

@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <%- include("../includes/head", { pageTitle: "Blog list" }) %>
+
+  <body>
+    <%- include("../includes/header") %>
+
+    <main>
+      <section class="card-menu" id="blog-list">
+        <div id="coding">
+          <img
+            src="/resource/system-image/mobile_header_coding.jpg"
+            alt="Coding blog header"
+          />
+          <ul>
+            <li>
+              <h2>Coding Blog</h2>
+            </li>
+            <li>
+              <p>
+                웹 개발(Web development)을 중점적으로 공부를 하며, 포스팅을
+                진행하는 블로그입니다. 웹 개발 이외에도 보안(Security), Python,
+                자동화 등 개발과 관련된 다양한 분야에 관심을 가지고 공부를 하고
+                있습니다.
+              </p>
+            </li>
+            <li class="btn-list">
+              <a
+                class="btn btn-light wide-btn"
+                target="_blank"
+                href="https://blog.naver.com/tief_p"
+                >블로그 바로가기</a
+              >
+            </li>
+          </ul>
+        </div>
+
+        <div id="security">
+          <img
+            src="/resource/system-image/mobile_header_security.jpg"
+            alt="Security blog header"
+          />
+          <ul>
+            <li>
+              <h2>Security Blog</h2>
+            </li>
+            <li>
+              <p>
+                기본적으로 운영을 하고 있는 블로그가 존재하지만,
+                보안(Security)의 경우 조금 민감한 주제를 다루고 있기 때문에,
+                보안과 관련된 심화된 내용을 정리하는 블로그를 만들었습니다.
+              </p>
+            </li>
+            <li class="btn-list">
+              <a
+                class="btn btn-light wide-btn"
+                target="_blank"
+                href="https://blog.naver.com/white_hacker_tief"
+                >블로그 바로가기</a
+              >
+            </li>
+          </ul>
+        </div>
+      </section>
+    </main>
+
+    <%- include("../includes/footer") %>
+  </body>
+</html>

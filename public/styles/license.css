@@ -1,0 +1,64 @@
+main {
+  color: var(--color-blue-900);
+  background-color: var(--color-orange-500);
+  height: calc(100vh - 21rem);
+  padding-bottom: 5rem;
+}
+
+main h1 {
+  padding: 5rem 0 0 var(--size-space-large);
+  font-size: 2rem;
+  font-weight: 800;
+}
+
+.title,
+.license-text {
+  width: var(--size-width-laptop);
+  margin: 0 auto;
+}
+
+.title hr {
+  border: 2px solid var(--color-blue-900);
+}
+
+.license-text ul {
+  list-style: disc;
+  padding: 0 var(--size-space-xlarge);
+}
+
+.license-text h2 {
+  font-size: var(--size-font-large);
+}
+
+@media (max-width: 119rem) {
+  main {
+    height: auto;
+  }
+}
+
+@media (max-width: 74.9rem) {
+  main {
+    height: inherit;
+  }
+
+  .title {
+    width: var(--size-width-whiteSpace);
+  }
+}
+
+@media (max-width: 63.9rem) {
+  main {
+    height: calc(100vh - 21rem);
+  }
+
+  .title,
+  .license-text {
+    width: 90%;
+  }
+}
+
+@media (max-width: 47.9rem) {
+  main {
+    height: auto;
+  }
+}

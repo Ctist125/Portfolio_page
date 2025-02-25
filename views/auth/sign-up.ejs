@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <%- include("../includes/head", { pageTitle: "Sign up" }) %>
+
+  <body>
+    <%- include("../includes/header") %>
+
+    <main>
+      <section class="auth">
+        <div class="auth-contents">
+          <h1>회원가입</h1>
+          <form action="/sign-up" method="POST">
+            <input type="hidden" name="_csrf" value="<%= locals.csrfToken %>">
+            
+            <ul>
+              <li>
+                <input
+                  type="text"
+                  id="user-name"
+                  name="userName"
+                  minlength="3"
+                  maxlength="5"
+                  placeholder="닉네임"
+                  value="<%= signupInput.userName %>"
+                  required
+                />
+              </li>
+              <li>
+                <% if (signupError.userNameError) { %>
+                <p class="err"><%= signupError.userNameError %></p>
+                <% } else { %>
+                <p>
+                  닉네임은 3~5자 사이로 설정해 주십시오. (공백, 특수문제 제외)
+                </p>
+                <% } %>
+              </li>
+              <li>
+                <input
+                  type="email"
+                  id="user-email"
+                  name="userEmail"
+                  placeholder="E-mail"
+                  value="<%= signupInput.userEmail %>"
+                  required
+                />
+              </li>
+              <li>
+                <% if (signupError.userEmailError) { %>
+                <p class="err"><%= signupError.userEmailError %></p>
+                <% } else { %>
+                <br />
+                <% } %>
+              </li>
+              <li>
+                <input
+                  type="password"
+                  id="user-pw"
+                  name="userPw"
+                  minlength="8"
+                  maxlength="15"
+                  placeholder="Password"
+                  value="<%= signupInput.userPw %>"
+                  required
+                />
+              </li>
+              <li>
+                <input
+                  type="password"
+                  id="pw-check"
+                  name="pwCheck"
+                  placeholder="Password 확인"
+                  value="<%= signupInput.pwCheck %>"
+                  required
+                />
+              </li>
+              <li>
+                <% if (signupError.userPwError) { %>
+                <p class="err"><%= signupError.userPwError %></p>
+                <% } else { %>
+                <p>
+                  Password는 8~15자 사이의 영어 대.소문자, 숫자, 특수문자를
+                  포함해 주십시오.
+                </p>
+                <% } %>
+              </li>
+              <li>
+                <button class="btn btn-light" type="submit">가입</button>
+              </li>
+            </ul>
+          </form>
+        </div>
+      </section>
+    </main>
+
+    <%- include("../includes/footer") %>
+  </body>
+</html>

@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <%- include("../includes/head", { pageTitle: "이용 약관" }) %>
+
+  <body>
+    <%- include("../includes/header") %>
+
+    <main>
+      <h1>이용 약관</h1>
+
+      <section id="btn-list">
+        <ul>
+          <li>
+            <a class="btn btn-dark wide-btn" href="/view-terms?contents=service">서비스 이용 약관</a>
+          </li>
+          <li>
+            <a class="btn btn-dark wide-btn" href="/view-terms?contents=signup">회원가입 약관</a>
+          </li>
+          <li>
+            <a class="btn btn-dark wide-btn" href="/view-terms?contents=personal">개인정보 취급 방침</a>
+          </li>
+          <li>
+            <a class="btn btn-dark wide-btn" href="/view-terms?contents=child">미성년자 이용약관</a>
+          </li>
+        </ul>
+      </section>
+
+      <section id="terms">
+        <% if (termsType === "service") { %>
+          <%- include("includes/terms/service-terms") %>
+        <% } else if (termsType === "signup") { %>
+          <%- include("includes/terms/sign-up-terms") %>
+        <% } else if (termsType === "personal") { %>
+          <%- include("includes/terms/personal-info-terms") %>
+        <% } else if (termsType === "child") { %>
+          <%- include("includes/terms/child-terms") %>
+        <% } else { %>
+          <p id="not-select" class="emphasis">선택한 항목이 없습니다.</p>
+        <% } %>
+      </section>
+
+      <div id="bottom-space"></div>
+    </main>
+
+    <%- include("../includes/footer") %>
+  </body>
+</html>

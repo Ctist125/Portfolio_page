@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <%- include("../includes/head", { pageTitle: "Log 수집 약관" }) %>
+
+  <body>
+    <main>
+      <section id="main-logo">
+        <img
+          src="/resource/system-image/logo_no_text.png"
+          alt="Tief's Portfolio logo"
+        />
+      </section>
+
+      <section id="contents">
+        <form action="log-agree" method="POST">
+          <ul>
+            <li>
+              <h1>로그 수집 약관</h1>
+            </li>
+            <li>
+              <div id="text-box">
+                <%- include("../auth/includes/terms/log-terms") %>
+              </div>
+            </li>
+            <li id="checkbox">
+              <input
+                type="checkbox"
+                id="log-collect"
+                name="logCollect"
+                required
+              />
+              <label for="log-collect"
+                >위 로그 수집 약관에 대해 동의합니다. (필수)</label
+              >
+            </li>
+            <li>
+              <button class="btn btn-light" type="submit">동의</button>
+            </li>
+          </ul>
+        </form>
+      </section>
+    </main>
+  </body>
+</html>

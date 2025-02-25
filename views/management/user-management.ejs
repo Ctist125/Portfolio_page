@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <%- include("../includes/head", { pageTitle: "Management" }) %>
+
+  <body>
+    <%- include("../includes/header") %>
+
+    <main>
+      <%- include("includes/management-menu") %>
+
+      <section class="management" id="user-management">
+        <div id="signup-lock">
+          <h2>회원가입 기능 잠금</h2>
+          <hr>
+          <form action="/management/user/signup-function" method="POST">
+            <input type="hidden" name="_csrf" value="<%= locals.csrfToken %>">
+            
+            <ul>
+              <li>
+                <select name="signupFunction" id="signup-function" required>
+                  <option value="on" <% if (serviceManagement.signupFunctionLock.value) { %>selected<% } %>>on</option>
+                  <option value="off" <% if (!serviceManagement.signupFunctionLock.value) { %>selected<% } %>>off</option>
+                </select>
+              </li>
+              <li>
+                <button class="btn btn-light" type="submit">확인</button>
+              </li>
+            </ul>
+          </form>
+        </div>
+
+        <div id="singup-approval">
+          <h2>회원가입 승인</h2>
+          <hr>
+          <ul class="white-box">
+            <% if (serviceManagement.watingApproval[0]) { %>
+              <li class="sortation">
+                <p>닉네임</p>
+                <p>이메일</p>
+                <p>약관</p>
+                <p>승인</p>
+              </li>
+              <% for (let wattingApproval of serviceManagement.watingApproval) { %>
+                <li>
+                  <p><%= wattingApproval.userName %></p>
+                  <p><%= wattingApproval.email %></p>
+                  <p><%= wattingApproval.terms.check %></p>
+                  <a class="btn btn-dark box-btn" href="/management/user/<%= wattingApproval._id %>?value=true">승인</a>
+                  <a class="btn btn-dark box-btn" href="/management/user/<%= wattingApproval._id %>?value=false">거절</a>
+                </li>
+              <% } %>
+            <% } else { %>
+              <li class="empty emphasis">
+                <p>현재 대기중인 회원이 없습니다.</p>
+              </li>
+            <% } %>
+          </ul>
+        </div>
+
+        <div id="lock-management">
+          <h2>계정 잠김 관리</h2>
+          <hr>
+          <ul class="white-box">
+            <% if (serviceManagement.lockedUser[0]) { %>
+              <li class="sortation">
+                <p>닉네임</p>
+                <p>이메일</p>
+                <p>버튼</p>
+              </li>
+              <% for (let user of serviceManagement.lockedUser) { %>
+                <li>
+                  <p><%= user.userName %></p>
+                  <p><%= user.email %></p>
+                  <a class="btn btn-dark box-btn" href="/management/user/lock-management/<%= user._id %>">해제</a>
+                </li>
+              <% } %>
+            <% } else { %>
+              <li class="empty emphasis">
+                <p>계정이 잠긴 회원이 없습니다.</p>
+              </li>
+            <% } %>
+          </ul>
+        </div>
+
+        <% if (locals.admin) { %>
+          <div id="manager-management">
+            <h2>관리자 권한 관리</h2>
+            <hr>
+            <ul class="white-box">
+              <% if (serviceManagement.managerManagement[0]) { %>
+                <li class="sortation">
+                  <p>닉네임</p>
+                  <p>이메일</p>
+                  <p>버튼</p>
+                </li>
+                <% for (let user of serviceManagement.managerManagement) { %>
+                  <li>
+                    <p><%= user.userName %></p>
+                    <p><%= user.email %></p>
+                    <% if (!user.manager) { %>
+                      <a class="btn btn-dark box-btn" href="/management/user/manager/<%= user._id %>?value=up">승급</a>
+                    <% } else { %>
+                      <a class="btn btn-dark box-btn" href="/management/user/manager/<%= user._id %>?value=down">강등</a>
+                    <% } %>
+                  </li>
+                <% } %>
+              <% } else { %>
+                <li class="empty emphasis">
+                  <p>현재 해당되는 회원이 없습니다.</p>
+                </li>
+              <% } %>
+            </ul>
+          </div>
+
+          <div id="user-kick">
+            <h2>유저 강퇴</h2>
+            <hr>
+            <ul class="white-box">
+              <% if (serviceManagement.allUsers[0]) { %>
+                <li class="sortation">
+                  <p>닉네임</p>
+                  <p>이메일</p>
+                  <p>버튼</p>
+                </li>
+                <% for (let user of serviceManagement.allUsers) { %>
+                  <li>
+                    <p><%= user.userName %></p>
+                    <p><%= user.email %></p>
+                    <a class="btn btn-dark box-btn" href="/management/user/kick/<%= user._id %>">강퇴</a>
+                  </li>
+                <% } %>
+              <% } else { %>
+                <li class="empty emphasis">
+                  <p>현재 해당되는 회원이 없습니다.</p>
+                </li>
+              <% } %>
+            </ul>
+          </div>
+        <% } %>
+      </section>
+    </main>
+
+    <%- include("../includes/footer") %>
+  </body>
+</html>
